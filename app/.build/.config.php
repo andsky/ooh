@@ -1,12 +1,12 @@
 <?php return array (
-  'error' => 
+  'error' =>
   array (
     'level' => 6135,
     'display' => false,
-    'log' => true,
+    'log' => false,
     'path' => 'E:\\work\\ooh\\ooh\\tmp\\log\\',
   ),
-  'db' => 
+  'db' =>
   array (
     'driver' => 'Mysql',
     'host' => 'localhost:3306',
@@ -16,51 +16,51 @@
     'pconnect' => false,
     'charset' => 'utf8',
   ),
-  'router' => 
+  'router' =>
   array (
     'control_action' => 'index.index',
     'route' => 'get',
     'protocol' => 'PATH_INFO',
     'ext' => '.html',
-    'urls' => 
+    'urls' =>
     array (
-      'test' => 
+      'test' =>
       array (
         'act' => 'index.test',
         'params' => '(?P<name>(.*)+)',
       ),
     ),
   ),
-  'cache' => 
+  'cache' =>
   array (
     'driver' => 'file_cache',
     'exp' => 3600,
     'server' => '127.0.0.1:11211',
   ),
-  'queue' => 
+  'queue' =>
   array (
     'driver' => 'file_queue',
     'pconnect' => false,
     'exp' => 3600,
     'server' => '127.0.0.1:6379',
   ),
-  'pager' => 
+  'pager' =>
   array (
     'driver' => 'pager_pager',
   ),
-  'session' => 
+  'session' =>
   array (
     'driver' => 'file_session',
     'name' => 'SESSANDSKY',
     'expire' => 7200,
   ),
-  'cookie' => 
+  'cookie' =>
   array (
     'expire' => 7200,
     'domain' => '',
     'path' => '/',
   ),
-  'view' => 
+  'view' =>
   array (
     'driver' => 'Phplite',
     'output' => 'html',
@@ -75,7 +75,7 @@
     'compile_dir' => 'E:\\work\\ooh\\ooh\\app\\views/templates_c',
     'cache_dir' => 'E:\\work\\ooh\\ooh\\app\\views/cache',
   ),
-  'conf' => 
+  'conf' =>
   array (
     'site_name' => 'ooh',
     'site_url' => 'http://www.andsky.com/',
