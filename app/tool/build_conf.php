@@ -2,7 +2,7 @@
 
 $appdir = dirname(dirname(__FILE__));
 define('APP_NAME',  basename($appdir));
-require dirname($appdir).'/system/dev.php';
+require dirname($appdir).'/ooh/dev.php';
 
 $conf = require(CONF_PATH.'config.php');
 $runtimefile = $appdir.'/.build/.config.php';
