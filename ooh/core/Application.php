@@ -7,6 +7,7 @@
  */
 class Application {
     private $locale    = '';
+    private static $_controls;
 
     public function __construct()
     {
@@ -30,10 +31,15 @@ class Application {
     {
 
         $load_class = APP_PATH.'controllers/'.$control.'.php';
+        $control .= 'Controller';
+        if (!empty(self::$_controls[$control]))
+        {
+            return self::$_controls[$control];
+        }
         if (is_file($load_class)){
             require($load_class);
-            $control .= 'Controller';
-            return new $control();
+            self::$_controls[$control] = new $control();
+            return self::$_controls[$control];
         }else{
             throw new HttpExceptions("can't find controller '{$control}'", 404);
         }
@@ -55,7 +61,7 @@ class Application {
         try {
             $control = CONTROL.'Controller';
             $obj = new $control();
-             $obj->exec();
+            $obj->exec();
         } catch (Exception $e) {
             return Error::instance()->Exception($e);
         }

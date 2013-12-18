@@ -47,7 +47,7 @@ class Config
 
     }
 
-	public function &__get($name)
+	public function __get($name)
 	{
 	    $this->load();
 	    if (isset(self::$_config[$name])) {

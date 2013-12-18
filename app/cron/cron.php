@@ -20,4 +20,5 @@ class testController extends Controller{
 }
 
 Application::cli('test.test');
+Application::cli('test.test');
 ?>
