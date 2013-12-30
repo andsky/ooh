@@ -29,17 +29,15 @@ class Application {
      */
     public static function loadControl($control)
     {
-
         $load_class = APP_PATH.'controllers/'.$control.'.php';
         $control .= 'Controller';
-        if (!empty(self::$_controls[$control]))
+        if (isset(self::$_controls[$control]))
         {
             return self::$_controls[$control];
         }
         if (is_file($load_class)){
             require($load_class);
-            self::$_controls[$control] = new $control();
-            return self::$_controls[$control];
+            return self::$_controls[$control] = new $control();
         }else{
             throw new HttpExceptions("can't find controller '{$control}'", 404);
         }
@@ -83,9 +81,5 @@ class Application {
         } catch (Exception $e) {
             return Error::instance()->Exception($e);
         }
-
     }
-
-
-
 }

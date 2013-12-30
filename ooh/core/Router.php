@@ -41,6 +41,9 @@ class Router
             case 'regex':
                 $this->regex();
                 break;
+            case 'get':
+                $this->get();
+                break;
 
             default:
                 $this->get();
@@ -56,9 +59,6 @@ class Router
 
     private function pathinfo()
     {
-
-        //默认控制器
-        $this->default_controller();
 
         //preg_match("/^(.*)((\/\d+)+)\/?$/U", $path_info, $match);
         if ( preg_match("/^\/(\w+)/", $path_info, $match) )
@@ -95,13 +95,19 @@ class Router
         if (empty(Config::instance()->router['urls'][$alias])) {
             throw new Http404Exceptions('not fount');
         }
+
         $this->set_control_action(Config::instance()->router['urls'][$alias]['act']);
+
+        if (isset(Config::instance()->router['urls'][$alias]['parameter'])) {
+            Request::instance()->sets(Config::instance()->router['urls'][$alias]['parameter']);
+        }
+
         if (empty($params) || empty(Config::instance()->router['urls'][$alias]['params'])) {
             return FALSE;
         }
-        if (is_array(Config::instance()->router['urls'][$alias]['params'])) {
+        if(is_array(Config::instance()->router['urls'][$alias]['params'])) {
             foreach (Config::instance()->router['urls'][$alias]['params'] as $regex_act =>$regex_params) {
-                if (preg_match('#^'.$regex_params.'/?$#', $params, $matches)) {
+                if(preg_match('#^'.$regex_params.'/?$#', $params, $matches)) {
                     if ( strstr('.',$regex_act) ){
 						$this->set_control_action($regex_act);
                     }
@@ -109,10 +115,11 @@ class Router
                     return FALSE;
                 }
             }
-        }else if (preg_match('#^'.Config::instance()->router['urls'][$alias]['params'].'/?$#', $params, $matches)) {
+        }else if(preg_match('#^'.Config::instance()->router['urls'][$alias]['params'].'/?$#', $params, $matches)) {
             Request::instance()->sets($matches);
             return FALSE;
         }
+
     }
 
     /**
