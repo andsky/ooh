@@ -93,7 +93,11 @@ class Router
             return FALSE;
         }
         if (empty(Config::instance()->router['urls'][$alias])) {
-            throw new Http404Exceptions('not fount');
+            if (Config::instance()->router['urls']['*']) {
+                $alias = '*';
+            }else {
+                throw new Http404Exceptions('not fount');
+            }
         }
 
         $this->set_control_action(Config::instance()->router['urls'][$alias]['act']);
