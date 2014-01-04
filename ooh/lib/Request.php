@@ -51,7 +51,7 @@ class Request
         return self::$_request;
     }
 
-    public function sets($params)
+    public function sets(array $params)
     {
         foreach ($params as $name => $value) {
             $this->$name = $value;
@@ -76,14 +76,14 @@ class Request
     public function strip($values)
     {
         if (self::$_magic) {
-            $values = is_array($values) ? array_map(array($this, 'strip'), $values) : stripslashes($values);
+            $values = is_array($values) ? array_map(array($this, 'strip'), $values) : $this->_stripslashes($values);
         }
         return $values;
     }
 
     public function _stripslashes($values)
     {
-        stripslashes($values);
+        return stripslashes($values);
     }
 
     public function cmd()
