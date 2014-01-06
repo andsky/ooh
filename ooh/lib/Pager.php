@@ -156,7 +156,6 @@ class Pager
 
         if (empty($this->base_link)) {
             $this->base_link = preg_replace('/(\?|&)page=([^&]+|)/is', '', $_SERVER['REQUEST_URI']);
-            print_r($this->base_link);
         }
         if (stristr($this->base_link, $this->keyword)) {
             return $this->base_link.$page;
