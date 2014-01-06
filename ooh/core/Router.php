@@ -92,6 +92,9 @@ class Router
         if (empty($alias)) {
             return FALSE;
         }
+
+        Request::instance()->path_info_root = $alias;
+
         if (empty(Config::instance()->router['urls'][$alias])) {
             if (Config::instance()->router['urls']['*']) {
                 $alias = '*';
