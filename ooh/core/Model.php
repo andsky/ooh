@@ -64,7 +64,7 @@ class Model{
             self::$db = Db::instance();
         }
         // 数据表字段检测
-        $this->getTableInfo();
+        //$this->getTableInfo();
 
     }
 
@@ -110,14 +110,14 @@ class Model{
         if ( file_exists( $file )  ){
             $this->_fields = json_decode(file_get_contents($file),true);
         }else{
-            if ( !is_dir(TMP_PATH . 'table') ){
-                @mkdir(TMP_PATH . 'table', 0777, true);
+            if ( !Fso::instance()->isDir(TMP_PATH . 'table') ){
+                Fso::instance()->mkdir(TMP_PATH . 'table');
             }
             $rs = self::$db->list_fields($this->_tableName);
             foreach($rs as $k=>$v){
                 $this->_fields[$v['Field']] = strstr($v['Type'],'int') ? (int)$v['Default'] : $v['Default'];
             }
-            file_put_contents($file, json_encode($this->_fields));
+            Fso::instance()->write($file, json_encode($this->_fields));
         }
     }
 
@@ -744,6 +744,7 @@ class Model{
      */
     public function insert_filter($data)
     {
+        $this->getTableInfo();
         $sql = self::$db->insert($this->_tableName, array_merge(array_intersect_key($data, $this->_fields), $this->_autoData ));
         $this->_reset_write();
         return self::$db->query($sql)->insert_id();

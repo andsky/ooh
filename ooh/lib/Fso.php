@@ -164,8 +164,7 @@ class Fso
         if (function_exists('file_get_contents'))
         {
             return file_get_contents($file);
-        }else
-        {
+        } else {
             if (!$fp = @fopen($file, 'rb')){
                 return false;
             }
@@ -186,14 +185,13 @@ class Fso
      */
     public function write($file, $data, $mode = "w+")
     {
-        if ( ! $fp = @fopen($file, $mode)){
+        if ( !$fp = @fopen($file, $mode)){
             return false;
         }
         flock($fp, LOCK_EX);
         fwrite($fp, $data);
         flock($fp, LOCK_UN);
         fclose($fp);
-
         return true;
     }
 
