@@ -31,9 +31,13 @@ class Request
         return self::$_instance;
     }
 
-    public function __get($name)
+    public function &__get($name)
     {
-        return isset(self::$_request[$name]) ? self::$_request[$name] : NULL;
+        if (isset(self::$_request[$name])) {
+	        return self::$_request[$name];
+	    }
+	    $null = null;
+	    return $null;
     }
 
     public function __set($name, $value)

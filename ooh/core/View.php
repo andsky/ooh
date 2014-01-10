@@ -32,21 +32,17 @@ class View{
         if (self::$_engin != null) {
             return self::$_engin;
         }
-        $c =  &Config::instance()->view;
-        $this->_out_put = $c['output'];
+        //$c =  &Config::instance()->view;
+        $this->_out_put = Config::instance()->view['output'];
         //self::$_engin = Base::instance()->modules($c['driver'])->init();
-        self::$_engin= Base::instance()->plugin($c['driver']);
+        self::$_engin = Base::instance()->plugin(Config::instance()->view['driver']);
         $vars = get_object_vars(self::$_engin);
         foreach ( $vars as $k => $v )
         {
-            if ( !empty( $c[$k] ) )
+            if ( !empty( Config::instance()->view[$k] ) )
             {
-                self::$_engin->$k = $c[$k];
+                self::$_engin->$k = Config::instance()->view[$k];
             }
-        }
-        if ( isset( $c['cache_time'] ) )
-        {
-            self::$_engin->cache_lifetime = $c['cache_time'];
         }
         return self::$_engin;
     }

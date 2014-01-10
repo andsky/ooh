@@ -51,10 +51,9 @@ class Session
     private function __read()
     {
         $data = $this->_read();
-        if (!$data) {
-            $this->_sess_data = array();
+        if (!empty($data)) {
+            $this->_sess_data = $data;
         }
-        $this->_sess_data = $data;
     }
 
     public function __write()
@@ -62,9 +61,13 @@ class Session
         $this->_write();
     }
 
-    public function __get($key)
+    public function &__get($key)
     {
-        return isset($this->_sess_data[$key]) ? $this->_sess_data[$key] : NULL;
+        if (isset($this->_sess_data[$key])) {
+            return $this->_sess_data[$key];
+        }
+        $null = null;
+        return $null;
     }
 
     public function __set($key, $value)
@@ -74,7 +77,11 @@ class Session
 
     public function __isset($key)
     {
-        return isset($this->_sess_data[$key]);
+        if (isset($this->_sess_data[$key])) {
+            return (false === empty($this->_sess_data[$key]));
+        } else {
+            return null;
+        }
     }
     public function __unset($key)
     {

@@ -21,10 +21,12 @@ class Db
     public $transTimes = 0;
 
 
-    public static function instance()
+    public static function instance($driver = NULL)
     {
         if (self::$_instance == null) {
-            $driver = &Config::instance()->db['driver'];
+            if (empty($driver)) {
+                $driver = &Config::instance()->db['driver'];
+            }
             self::$_instance = new $driver;
         }
         return self::$_instance;

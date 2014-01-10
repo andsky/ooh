@@ -19,12 +19,20 @@ class Cookie{
 
 	public function __isset($name)
 	{
-		return isset($_COOKIE[$name]);
+	    if (isset($_COOKIE[$name])) {
+            return (false === empty($_COOKIE[$name]));
+        } else {
+            return null;
+        }
 	}
 
-	public function __get($name)
+	public function &__get($name)
 	{
-		return isset($_COOKIE[$name]) ? $_COOKIE[$name] : NULL;
+	    if (isset($_COOKIE[$name])) {
+	        return $_COOKIE[$name];
+	    }
+	    $null = null;
+	    return $null;
 	}
 
 	public function __set($name, $value)

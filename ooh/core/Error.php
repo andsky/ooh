@@ -56,19 +56,18 @@ class Error {
         $data['trace'] = implode("<br />", $result);
 
         Response::instance()->sendStatus($data['code']);
+
         if (Config::instance()->error['display']) {
-            if (isset(Config::instance()->error['exception_tpl'])) {
-                include Config::instance()->error['exception_tpl'];
-            }else{
-                include SYS_PATH.'/config/exception.default.php.tpl';
+            if (!isset(Config::instance()->error['exception_tpl'])) {
+                Config::instance()->error['exception_tpl'] = SYS_PATH.'/config/exception.default.php.tpl';;
             }
+            include Config::instance()->error['exception_tpl'];
 
         }else {
             if (isset(Config::instance()->error['error_tpl'])) {
-                include Config::instance()->error['error_tpl'];
-            }else{
-                include SYS_PATH.'/config/error.default.php.tpl';
+                Config::instance()->error['error_tpl'] = SYS_PATH.'/config/error.default.php.tpl';
             }
+            include Config::instance()->error['error_tpl'];
         }
         if (Config::instance()->error['log']) {
             $time=date('Y-m-d H:i:s');

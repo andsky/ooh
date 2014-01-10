@@ -47,13 +47,14 @@ class Config
 
     }
 
-	public function __get($name)
+	public function &__get($name)
 	{
 	    $this->load();
 	    if (isset(self::$_config[$name])) {
 	        return self::$_config[$name];
 	    }
-	    return self::$_config[$name];
+	    $null = null;
+	    return $null;
 
 	}
 
@@ -65,5 +66,10 @@ class Config
 	public function __set($name, $value)
 	{
 		self::$_config[$name] = $value;
+	}
+
+	public function __unset($name)
+	{
+	    unset(self::$_config[$name]);
 	}
 }
