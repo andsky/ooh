@@ -11,7 +11,7 @@ class Queue
     private static $_instance;
     public static function instance($driver = NULL)
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             if (!empty($driver)) {
                 $driver = Config::instance()->queue['driver'];
             }
@@ -38,11 +38,6 @@ class Queue
         return $this->_set($key, $data);
     }
 
-    public function __unset($key)
-    {
-        return $this->_del($key);
-    }
-
     public function encode($data)
     {
         return json_encode($data);
@@ -62,18 +57,17 @@ class cache_queue extends Cache
 
     protected function _init()
     {
+
+    }
+
+    protected function _get($key)
+    {
         $queue = Cache::instance()->$key;
         if (empty($queue)) {
             return FALSE;
         }
         $this->_queue_data = $queue;
-    }
 
-    protected function _get($key)
-    {
-        if (empty($this->_queue_data)) {
-            return FALSE;
-        }
         return array_shift($this->_queue_data);
     }
 
@@ -89,12 +83,12 @@ class cache_queue extends Cache
 
 class redis_queue extends Cache
 {
-    private $_redis = null;
+    private $_redis = NULL;
 
 
     protected function _init()
     {
-        if ( $this->_redis == null )
+        if ( $this->_redis == NULL )
         {
             $this->_redis = new Redis();
             list($server,$port) = explode(':', Config::instance()->queue['server']);

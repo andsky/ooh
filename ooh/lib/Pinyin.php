@@ -20877,7 +20877,7 @@ class Pinyin{
     '鈼'=>array(array(0,'zuo')),
 );
     public static function instance(){
-		if(self::$_instance == null){
+		if(self::$_instance == NULL){
 			self::$_instance = new self;
 		}
 		return self::$_instance;

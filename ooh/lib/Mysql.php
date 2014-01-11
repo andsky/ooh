@@ -10,7 +10,7 @@ class Mysql extends Db
 {
     protected function _connect($conf)
     {
-        $this->conn_id = ($conf['pconnect'] == false) ? $this->db_connect($conf) : $this->db_pconnect($conf);
+        $this->conn_id = ($conf['pconnect'] == FALSE) ? $this->db_connect($conf) : $this->db_pconnect($conf);
 
         if ( !$this->conn_id )
         {
@@ -29,7 +29,7 @@ class Mysql extends Db
     }
     protected function db_connect($conf)
     {
-        return mysql_connect($conf['host'], $conf['username'], $conf['password'], true);
+        return mysql_connect($conf['host'], $conf['username'], $conf['password'], TRUE);
     }
 
 
@@ -87,7 +87,7 @@ class Mysql extends Db
 
     protected function _fetch_array($type)
     {
-        if ($this->queryid === false or $this->num_rows() == 0)
+        if ($this->queryid === FALSE or $this->num_rows() == 0)
         {
             return array();
         }

@@ -29,7 +29,7 @@ class View{
 
     private function init()
     {
-        if (self::$_engin != null) {
+        if (self::$_engin != NULL) {
             return self::$_engin;
         }
         //$c =  &Config::instance()->view;

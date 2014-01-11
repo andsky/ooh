@@ -15,7 +15,7 @@ class Socket
 
     public static function instance()
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             self::$_instance = new $driver;
         }
         return self::$_instance;
@@ -39,7 +39,7 @@ class Socket
      * @param unknown_type $p
      * @author andsky 669811@qq.com
      */
-    public function connect($server, $port, $timeout = 10, $p = false)
+    public function connect($server, $port, $timeout = 10, $p = FALSE)
     {
         if ($p) {
             $this->_connection = @pfsockopen($server,$port, $this->errorNo, $errorMessage, $timeout);
@@ -62,7 +62,7 @@ class Socket
     {
         if ($this->_connection) {
             @fclose($this->_connection);
-            $this->_connection = null;
+            $this->_connection = NULL;
             return TRUE;
         }
         return FALSE;
@@ -75,7 +75,7 @@ class Socket
      */
     public function read($length)
     {
-        if ($this->_connection === false) {
+        if ($this->_connection === FALSE) {
             throwException('socket not connected');
         }
 

@@ -27,7 +27,7 @@ class Ftp
 
     public static function instance()
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             self::$_instance = new self;
         }
         return self::$_instance;
@@ -71,50 +71,50 @@ class Ftp
     {
 		if($this->_stream) {
 			ftp_close($this->_stream);
-			$this->_stream = false;
+			$this->_stream = FALSE;
 		}
 	}
 
     public function get($remote_file = null, $local_file = null, $mode = FTP_ASCII)
     {
 		if(ftp_get($this->_stream, $local_file, $remote_file, $mode)) {
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
     public function put($local_file = null, $remote_file = null, $mode = FTP_ASCII)
     {
 		if(ftp_put($this->_stream, $remote_file, $local_file, $mode)) {
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 
     public function rename($old_name = null, $new_name = null)
     {
 		if(ftp_rename($this->_stream, $old_name, $new_name)) {
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 
     public function delete($remote_file = null) {
 		if(ftp_delete($this->_stream, $remote_file)) {
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 
     public function cd($directory = null)
     {
 		if(ftp_chdir($this->_stream, $directory)) {
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 
@@ -136,27 +136,27 @@ class Ftp
     public function mkdir($directory = null)
     {
 		if(@ftp_mkdir($this->_stream, $directory)) {
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 
     public function rmdir($directory = null)
     {
 		if(@ftp_rmdir($this->_stream, $directory)) {
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 
 	public function chmod($remote_file, $mode=0755)
 	{
 	    if (ftp_chmod($this->_stream, $mode, $remote_file)) {
-	        return true;
+	        return TRUE;
 	    }else {
-			return false;
+			return FALSE;
 		}
 	}
 

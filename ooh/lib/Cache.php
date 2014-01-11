@@ -76,7 +76,7 @@ class Cache
 
     public function decode($data)
     {
-        return json_decode($data, true);
+        return json_decode($data, TRUE);
     }
 }
 
@@ -93,11 +93,11 @@ class file_cache extends Cache
     {
         $filename = $this->_get_filename($key);
         if ( !file_exists( $filename ) ) {
-            return false;
+            return NULL;
         }
         if(  $this->_exp  > 0 ){
             if( time() - filemtime($filename) > $this->_exp ){
-                return false;
+                return NULL;
             }
         }
         $content = Fso::instance()->read($filename);
@@ -118,24 +118,22 @@ class file_cache extends Cache
 
     private function _get_filename($key)
     {
-
         $hash =  md5( trim($key) );
         $cache_dir = TMP_PATH .'cache/'.substr($hash, 0, 1) . '/' . substr($hash, 1, 1) . '/';
         Fso::instance()->mkdir($cache_dir);
-        $filename = $cache_dir.$hash.'.php';
-        return $filename;
+        return $cache_dir.$hash.'.php';
     }
 }
 
 
 class memcache_cache extends Cache
 {
-	private $_mc = null;
+	private $_mc = NULL;
 
 
     protected function _init()
     {
-		if ( $this->_mc == null )
+		if ( $this->_mc == NULL )
         {
             $this->_mc = new Memcache;
 
@@ -145,15 +143,15 @@ class memcache_cache extends Cache
                 throw new Http503Exceptions('Can\'t connect to cache memcache server ');
             }
         }
-		return true;
+		return TRUE;
 
     }
 
     protected function _get($key)
     {
         $content = $this->_mc->get($key);
-        if ( !$content ){
-            return false;
+        if ( empty($content) ){
+            return NULL;
         }
         return $this->decode( $content );
     }
@@ -168,7 +166,7 @@ class memcache_cache extends Cache
     protected function _del($key)
     {
         if ( !$key ){
-            return false;
+            return FALSE;
         }
         return $this->_mc->delete($key);
 
@@ -201,19 +199,19 @@ class redis_cache extends Cache
     protected function _get($key)
     {
         $data = $this->_redis->get($key);
+        if (empty($data)) {
+            return null;
+        }
         if (ctype_digit($data)) {
-            $data = (int)$data;
             return $data;
         }
-        if ( $data == FALSE ){
-            return FALSE;
-        }
+
         return $this->decode( $data );
     }
 
     protected function _set($key, $data)
     {
-        if (!is_int($data)) {
+        if (!ctype_digit($data)) {
             $data = $this->encode($data);
         }
         if ($this->_exp == 0) {
@@ -249,11 +247,6 @@ class baememcache_cache extends Cache
             if (Config::instance()->cache['server']) {
                 $this->_mc->set_shareAppid(Config::instance()->cache['server']);
             }
-            //list($server,$port) = explode(':', Config::instance()->cache['server']);
-           // if ( !$this->_mc->pconnect($server,$port) )
-           // {
-           //     throw new Http503Exceptions('Can\'t connect to cache memcache server ');
-           // }
         }
         return true;
 
@@ -261,9 +254,9 @@ class baememcache_cache extends Cache
 
     protected function _get($key)
     {
-        $content = $this->_mc->get($key);
-        if ( !$content ){
-            return false;
+        $data = $this->_mc->get($key);
+        if ( empty($data) ){
+            return null;
         }
         return $this->decode( $content );
     }

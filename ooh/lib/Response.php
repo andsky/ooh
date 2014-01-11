@@ -64,7 +64,7 @@ class Response
 
 	public static function instance()
 	{
-		 if (self::$_instance == null) {
+		 if (self::$_instance == NULL) {
             self::$_instance = new self;
         }
         return self::$_instance;

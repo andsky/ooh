@@ -24,7 +24,7 @@ class Rsa
 
     public static function instance()
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             self::$_instance = new self;
         }
         return self::$_instance;
@@ -38,11 +38,11 @@ class Rsa
     public function create($bits = 1024)
     {
         $rsa = openssl_pkey_new(array('private_key_bits' => $bits,'private_key_type' => OPENSSL_KEYTYPE_RSA));
-        while( ( $e = openssl_error_string() ) !== false ){
+        while( ( $e = openssl_error_string() ) !== FALSE ){
             echo "openssl_pkey_new: " . $e . "\n";
         }
         openssl_pkey_export($rsa, $privatekey);
-        while( ( $e = openssl_error_string() ) !== false ){
+        while( ( $e = openssl_error_string() ) !== FALSE ){
             echo "openssl_pkey_new: " . $e . "\n";
         }
         $publickey = openssl_pkey_get_details($rsa);

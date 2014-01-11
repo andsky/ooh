@@ -23,7 +23,7 @@ class Db
 
     public static function instance($driver = NULL)
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             if (empty($driver)) {
                 $driver = &Config::instance()->db['driver'];
             }
@@ -53,7 +53,7 @@ class Db
     {
     if ( $this->conn_id )
         {
-            return true;
+            return TRUE;
         }
         $this->_connect(Config::instance()->db);
     }
@@ -93,7 +93,7 @@ class Db
     {
         if ( $this->master_dbh )
         {
-            return true;
+            return TRUE;
         }
     }
 
@@ -106,7 +106,7 @@ class Db
     {
         if ( $this->master_dbh )
         {
-            return true;
+            return TRUE;
         }
     }
 
@@ -360,9 +360,9 @@ class Db
     {
         if ( ! preg_match('/^\s*"?(SET|INSERT|UPDATE|DELETE|REPLACE|CREATE|DROP|LOAD DATA|COPY|ALTER|GRANT|REVOKE|LOCK|UNLOCK)\s+/i', $sql))
         {
-            return false;
+            return FALSE;
         }
-        return true;
+        return TRUE;
     }
 
     function _parse($str)
@@ -370,10 +370,10 @@ class Db
         $str = trim($str);
         if ( ! preg_match("/(\s|<|>|!|=|is null|is not null)/i", $str))
         {
-            return false;
+            return FALSE;
         }
 
-        return true;
+        return TRUE;
     }
 
     public function escape($str)
@@ -426,7 +426,7 @@ class Db
         if ($table == '')
         {
 
-            return false;
+            return FALSE;
         }
 
         $sql = $this->_list_columns($table);
@@ -455,7 +455,7 @@ class Db
 
     public function field_exists($field_name, $table)
     {
-        return ( ! in_array($field_name, $this->list_fields($table))) ? false : true;
+        return ( ! in_array($field_name, $this->list_fields($table))) ? FALSE : TRUE;
     }
 
     public function truncate($table)
@@ -471,7 +471,7 @@ class Db
             $this->query($sql);
         }
         $this->transTimes++;
-        return true;
+        return TRUE;
     }
 
     public function commit()
@@ -481,7 +481,7 @@ class Db
             $this->query($sql);
             $this->transTimes = 0;
         }
-        return true;
+        return TRUE;
     }
 
     public function rollback()
@@ -491,7 +491,7 @@ class Db
             $this->query($sql);
             $this->transTimes = 0;
         }
-        return true;
+        return TRUE;
     }
 
 

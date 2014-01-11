@@ -11,12 +11,14 @@ return array(
         ),
         'db' => array(
                 'driver' => 'Mysql',
-                "host" => "localhost:3306",//主机地址
-                "dbname" => "phone_platform",//数据库名
-                "username" => "root", //连接用户名
-                "password" => "",//连接密码
-                "pconnect" => false,//是否持久化链接
-                "charset" => "utf8"//连接用的字符集
+                'log'  => false,
+                'path'		=> TMP_PATH .'mysql'. DIRECTORY_SEPARATOR,
+                'host' => 'localhost:3306',//主机地址
+                'dbname' => 'ooh',//数据库名
+                'username' => 'root', //连接用户名
+                'password' => '',//连接密码
+                'pconnect' => false,//是否持久化链接
+                'charset' => 'utf8'//连接用的字符集
         ),
         'router' => array(
                 'control_action'     => 'index.index', // 默认的入口控制器

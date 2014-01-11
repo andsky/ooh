@@ -18,7 +18,7 @@ class Fso
 
     public static function instance()
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             self::$_instance = new self;
         }
         return self::$_instance;
@@ -82,14 +82,14 @@ class Fso
 
 
 
-    public function fileList($path,$subdir=false,$_ext=null)
+    public function fileList($path, $subdir = FALSE, $_ext = NULL)
     {
         $path =  $this->setpath($path);
 
         if (!$this->isDir($path)){
-            return null;
+            return NULL;
         }
-        if ( $_ext == null ){
+        if ( $_ext == NULL ){
             $files = scandir($path);
         }else{
             $files = glob($path.$_ext, GLOB_BRACE);
@@ -117,7 +117,7 @@ class Fso
         }
 
         //
-        if ($_ext != null && $subdir) {
+        if ($_ext != NULL && $subdir) {
             $files = scandir($path);
             foreach ($files as $file) {
                 $file = basename($file);
@@ -148,7 +148,7 @@ class Fso
     public function mkdir($dir, $mode = 0777)
     {
         if (!$this->exists($dir)) {
-            return mkdir($dir, $mode, true);
+            return mkdir($dir, $mode, TRUE);
         }
     }
     /**
@@ -159,14 +159,14 @@ class Fso
     public function read($file)
     {
         if ( !$this->exists($file) ){
-            return false;
+            return FALSE;
         }
         if (function_exists('file_get_contents'))
         {
             return file_get_contents($file);
         } else {
             if (!$fp = @fopen($file, 'rb')){
-                return false;
+                return FALSE;
             }
 
             flock($fp, LOCK_SH);
@@ -186,13 +186,13 @@ class Fso
     public function write($file, $data, $mode = "w+")
     {
         if ( !$fp = @fopen($file, $mode)){
-            return false;
+            return FALSE;
         }
         flock($fp, LOCK_EX);
         fwrite($fp, $data);
         flock($fp, LOCK_UN);
         fclose($fp);
-        return true;
+        return FALSE;
     }
 
     public function append($file,$data)
@@ -216,7 +216,7 @@ class Fso
             }
             return @rmdir($file);
         }
-        return false;
+        return FALSE;
     }
 
 

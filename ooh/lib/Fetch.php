@@ -39,7 +39,7 @@ class Fetch
      */
     public static function instance($driver = NULL)
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             if (empty($driver)) {
                 $driver = Config::instance()->fetch['driver'];
             }

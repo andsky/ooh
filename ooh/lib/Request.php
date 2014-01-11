@@ -25,7 +25,7 @@ class Request
 
     public static function instance()
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             self::$_instance = new self;
         }
         return self::$_instance;
@@ -36,7 +36,7 @@ class Request
         if (isset(self::$_request[$name])) {
 	        return self::$_request[$name];
 	    }
-	    $null = null;
+	    $null = NULL;
 	    return $null;
     }
 
@@ -169,7 +169,7 @@ class Request
         if (isset($_SERVER['PHP_SELF'])) {
             return $_SERVER['PHP_SELF'];
         }
-        return null;
+        return NULL;
     }
 
 

@@ -22,7 +22,7 @@ class Cookie{
 	    if (isset($_COOKIE[$name])) {
             return (false === empty($_COOKIE[$name]));
         } else {
-            return null;
+            return NULL;
         }
 	}
 
@@ -31,7 +31,7 @@ class Cookie{
 	    if (isset($_COOKIE[$name])) {
 	        return $_COOKIE[$name];
 	    }
-	    $null = null;
+	    $null = NULL;
 	    return $null;
 	}
 

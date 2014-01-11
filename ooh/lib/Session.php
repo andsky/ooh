@@ -16,7 +16,7 @@ class Session
 
     public static function instance($driver = NULL)
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             if (empty($driver)) {
                 $driver = Config::instance()->session['driver'];
             }
@@ -43,7 +43,7 @@ class Session
     }
     private function gen_sid()
     {
-        return md5(uniqid(microtime() . Request::instance()->getIP(), true));
+        return md5(uniqid(microtime() . Request::instance()->getIP(), TRUE));
     }
     private function init()
     {
@@ -68,7 +68,7 @@ class Session
         if (isset($this->_sess_data[$key])) {
             return $this->_sess_data[$key];
         }
-        $null = null;
+        $null = NULL;
         return $null;
     }
 
@@ -82,7 +82,7 @@ class Session
         if (isset($this->_sess_data[$key])) {
             return (false === empty($this->_sess_data[$key]));
         } else {
-            return null;
+            return NULL;
         }
     }
     public function __unset($key)
@@ -103,7 +103,7 @@ class Session
     public function del($key)
     {
         unset($this->_sess_data[$key]);
-        return true;
+        return TRUE;
     }
 
     public function flash($key)
@@ -151,7 +151,7 @@ class file_session extends Session{
 
     protected function _init()
     {
-        if ($this->_sess_path == null) {
+        if ($this->_sess_path == NULL) {
             $this->_sess_path = $this->_get_path();
         }
     }
@@ -166,7 +166,7 @@ class file_session extends Session{
             return array();
         }
         $data = file_get_contents($this->_sess_path.$this->_sess_id);
-        return json_decode($data, true);
+        return json_decode($data, TRUE);
     }
 
     protected function _write()
@@ -206,12 +206,12 @@ class memcache_session extends Session{
         if ( !$data ){
             return array();
         }
-        return json_decode($data, true);
+        return json_decode($data, TRUE);
     }
 
     protected function _write()
     {
-        return $this->_mc->set($this->_sess_id, json_encode($this->_sess_data), false, $this->_sess_expire);
+        return $this->_mc->set($this->_sess_id, json_encode($this->_sess_data), FALSE, $this->_sess_expire);
     }
 
 }

@@ -60,7 +60,7 @@ class Model{
     function __construct()
     {
         // 获取数据库操作对象
-        if( self::$db == null ){
+        if( self::$db == NULL ){
             self::$db = Db::instance();
         }
         // 数据表字段检测
@@ -835,7 +835,7 @@ class Model{
     {
         $vars = array(
 			'_select' => array(),
-			'_index' => false,
+			'_index' => FALSE,
 			'_join' => array(),
 			'_where' => array(),
 			'_like' => array(),
@@ -843,9 +843,9 @@ class Model{
 			'_group' => array(),
 			'_having' => array(),
 			'_order' => array(),
-			'_distinct' => false,
-			'_limit' => false,
-			'_offset' => false,
+			'_distinct' => FALSE,
+			'_limit' => FALSE,
+			'_offset' => FALSE,
         );
 
         $this->_reset_run($vars);

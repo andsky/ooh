@@ -9,13 +9,13 @@
 class Config
 {
     private static $_config  = array();
-	private static $_instance = null;
+	private static $_instance = NULL;
 	private $config_name = '.config';
 
 
 	public static function instance()
     {
-        if (self::$_instance == null) {
+        if (self::$_instance == NULL) {
             self::$_instance = new self;
         }
         return self::$_instance;
@@ -37,7 +37,7 @@ class Config
     {
         if ( !empty(self::$_config) )
         {
-            return FALSE;
+            return TRUE;
         }
         $config_file = BUILD_PATH.$this->config_name.'.php';
         if (is_file( APP_BUILD_PATH.$this->config_name.'.php'  )) {
@@ -53,7 +53,7 @@ class Config
 	    if (isset(self::$_config[$name])) {
 	        return self::$_config[$name];
 	    }
-	    $null = null;
+	    $null = NULL;
 	    return $null;
 
 	}
