@@ -18,7 +18,7 @@ class Db
     public $queryid;
     public $querys;
     public $sqls = array();
-    public $transTimes = 0;
+    private $transTimes = 0;
 
 
     public static function instance($driver = NULL)
@@ -149,15 +149,14 @@ class Db
 
         $this->sqls[] = $sql;
 
-        /**
-        if ( @filesize(TMP_PATH.'sql.log') > 1024*1024*2){
-            $handle = @fopen(TMP_PATH.'sql.log', 'w');
-        }else{
-            $handle = @fopen(TMP_PATH.'sql.log', 'a');
+        if (Config::instance()->db['log']) {
+            $logline = "%s query: %s\n";
+            $time=date('Y-m-d H:i:s');
+            Fso::instance()->mkdir(Config::instance()->db['path']);
+            $log_file =  Config::instance()->db['path'] . date("Y-m-d").'.log';
+            $log = sprintf($logline, $time, $sql);
+            error_log($log, 3, $log_file);
         }
-        @fwrite($handle, $sql."\n");
-        @fclose($handle);
-        **/
 
         $this->queryid = $this->_query($sql);
         if (!$this->queryid) {
@@ -472,7 +471,7 @@ class Db
             $this->query($sql);
         }
         $this->transTimes++;
-        return ;
+        return true;
     }
 
     public function commit()

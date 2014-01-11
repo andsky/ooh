@@ -14,10 +14,12 @@ class Session
     protected $_sess_expire = 7200;
 
 
-    public static function instance()
+    public static function instance($driver = NULL)
     {
         if (self::$_instance == null) {
-            $driver = Config::instance()->session['driver'];
+            if (empty($driver)) {
+                $driver = Config::instance()->session['driver'];
+            }
             self::$_instance = new $driver;
         }
         return self::$_instance;

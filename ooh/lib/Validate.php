@@ -24,7 +24,7 @@ class Validate {
 		    //'chinese'=> '/^[\u0391-\uFFE5]+$/',
             'chinese'=> '/^[\x{4e00}-\x{9fa5}]+$/u',
             'username' => '/^[0-9a-zA-Z]+$/',
-            'url'    => '/^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/',
+            'url'    => '/^http(s?):\/\/(?:[A-za-z0-9-]+\.)+[A-za-z]{2,4}(?:[\/\?#][\/=\?%\-&~`@[\]\':+!#\w]*)?$/',
             'date'   => '/^\d{4}-\d{1,2}-\d{1,2}$/',
 		    'time'   => '/^\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}$/'
     );
@@ -57,8 +57,7 @@ class Validate {
 
     public function single($check, $value)
     {
-        $regex = $this->$check;
-        return preg_match($regex, trim($value));
+        return preg_match(self::$regex[$check], trim($value));
     }
 
     public function check($data, $model)

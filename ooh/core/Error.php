@@ -71,12 +71,11 @@ class Error {
         }
         if (Config::instance()->error['log']) {
             $time=date('Y-m-d H:i:s');
-            $log_path = Config::instance()->error['path'];
-            Fso::instance()->mkdir($log_path);
-            $log_path =  $log_path . DIRECTORY_SEPARATOR. date("Y-m-d").'.log';
+            Fso::instance()->mkdir(Config::instance()->error['path']);
+            $log_file =  Config::instance()->error['path'] . date("Y-m-d").'.log';
             $data['trace'] = implode("\n", $result);
             $msg = sprintf($log, $data['type'], $data['message'], $data['file'], $data['line'], $data['trace']);
-            error_log($msg, 3, $log_path);
+            error_log($msg, 3, $log_file);
         }
 
     }

@@ -882,9 +882,8 @@ class Model{
      */
     public function startTrans()
     {
-        $this->commit();
-        self::$db->startTrans();
-        return;
+        //$this->commit();
+        return self::$db->startTrans();
     }
 
     /**

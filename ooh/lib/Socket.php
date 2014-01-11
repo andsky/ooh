@@ -9,13 +9,21 @@
 
 class Socket
 {
+    private static $_instance;
 
     private $_connection;
 
-
-    function __construct ($server, $port, $timeout = 10, $p = TRUE)
+    public static function instance()
     {
-        $this->connect($server, $port, $timeout, $p);
+        if (self::$_instance == null) {
+            self::$_instance = new $driver;
+        }
+        return self::$_instance;
+    }
+
+
+    function __construct ()
+    {
     }
 
 
@@ -42,6 +50,7 @@ class Socket
         if (!$this->_connection) {
             throwException(sprintf('%s, %s', $this->errorNo, $errorMessage));
         }
+        return $this;
     }
 
     /**

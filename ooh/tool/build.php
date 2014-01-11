@@ -1,7 +1,7 @@
 <?php
 
 $core = array('Application', 'Base', 'Config', 'Controller', 'Db', 'Error', 'Exceptions', 'Model', 'Router', 'View');
-$lib = array('Auth', 'Cache', 'Fso', 'Ftp', 'JS', 'Mysql', 'Pager', 'Request', 'Response', 'Session', 'String', 'Validate');
+$lib = array('Auth', 'Cache', 'Cookie','Fetch', 'Fso', 'JS', 'Mysql', 'Pager', 'Queue', 'Request', 'Response', 'Session', 'String', 'Validate');
 
 $content = '';
 $runtimefile = '../.build/runtime.php';
