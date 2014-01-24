@@ -54,7 +54,7 @@ return array(
          ),
         'cookie' => array(
             'expire' => 7200,
-            'domain' => '.test.com',
+            'domain' => '',
             'path' => '/'
         ),
         'view' => array(
