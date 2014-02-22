@@ -64,7 +64,7 @@ class Error {
             include Config::instance()->error['exception_tpl'];
 
         }else {
-            if (isset(Config::instance()->error['error_tpl'])) {
+            if (!isset(Config::instance()->error['error_tpl'])) {
                 Config::instance()->error['error_tpl'] = SYS_PATH.'/config/error.default.php.tpl';
             }
             include Config::instance()->error['error_tpl'];
