@@ -374,7 +374,7 @@ class Request
     }
 
 
-    public function parseSignature($uname = null)
+    public function parseSignature($uname = NULL)
     {
         $sysmap = array
         (
@@ -387,7 +387,7 @@ class Request
                 "i686" => "i386",
                 "ppc" => "powerpc",
         );
-        if ($uname === null)
+        if ($uname === NULL)
         {
             $uname = php_uname();
         }

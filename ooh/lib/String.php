@@ -208,6 +208,24 @@ class String
 		return substr(str_shuffle($str), 0, $len);
 	}
 
+	/**
+	 * 转数字
+	 * @param unknown $value
+	 * @return string|mixed|number
+	 * @author andsky 669811@qq.com
+	 */
+	function intval($value) {
+	    $value = trim($value);
+	    if (ctype_digit($value)) {
+	        return $value;
+	    }
+	    $value = preg_replace("/[^0-9](.*)$/", '', $value);
+	    if (ctype_digit($value)) {
+	        return $value;
+	    }
+	    return 0;
+	}
+
 
 	/**
 	 * 生成 id
