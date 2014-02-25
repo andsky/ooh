@@ -14,6 +14,11 @@ class Session
     protected $_sess_expire = 7200;
 
 
+    /**
+     * Session instance
+     * @param string $driver
+     * @return Session instance
+     */
     public static function instance($driver = NULL)
     {
         if (self::$_instance == NULL) {

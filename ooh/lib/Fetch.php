@@ -32,10 +32,11 @@ class Fetch
     protected $_error;
     protected $_status = 0;
 
+
     /**
-     * 静态调用
-     *
-     * @author andsky 669811@qq.com
+     * Fetch instance
+     * @param string $driver
+     * @return Fetch instance
      */
     public static function instance($driver = NULL)
     {

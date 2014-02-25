@@ -29,6 +29,11 @@ class Validate {
 		    'time'   => '/^\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}$/'
     );
 
+
+    /**
+     * Validate instance
+     * @return Validate instance
+     */
     public static function instance()
     {
         if (self::$_instance == null) {

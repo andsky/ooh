@@ -12,6 +12,10 @@ class String
     private static $_instance;
 
 
+    /**
+     * String instance
+     * @return String instance
+     */
     public static function instance()
     {
         if (self::$_instance == NULL) {

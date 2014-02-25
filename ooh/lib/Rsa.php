@@ -22,6 +22,10 @@ class Rsa
     {
     }
 
+    /**
+     * Rsa instance
+     * @return Rsa instance
+     */
     public static function instance()
     {
         if (self::$_instance == NULL) {

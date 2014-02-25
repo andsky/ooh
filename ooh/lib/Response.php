@@ -62,6 +62,10 @@ class Response
 	{
 	}
 
+	/**
+	 * Response instance
+	 * @return Response instance
+	 */
 	public static function instance()
 	{
 		 if (self::$_instance == NULL) {

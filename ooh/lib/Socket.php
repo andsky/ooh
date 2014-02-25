@@ -13,6 +13,11 @@ class Socket
 
     private $_connection;
 
+
+    /**
+     * Socket instance
+     * @return Socket instance
+     */
     public static function instance()
     {
         if (self::$_instance == NULL) {

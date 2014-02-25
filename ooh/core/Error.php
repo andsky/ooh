@@ -123,8 +123,9 @@ class Error {
         if (Config::instance()->error['log']) {
             $time=date('Y-m-d H:i:s');
             $log_path = Config::instance()->error['path'];
-            Fso::instance()->mkdir($log_path);
-            $log_path =  $log_path . DIRECTORY_SEPARATOR. date("Y-m-d").'.log';
+            //Fso::instance()->mkdir($log_path);
+            mkdir($log_path, 755, TRUE);
+            $log_path .=  DIRECTORY_SEPARATOR. date("Y-m-d").'.log';
             error_log(sprintf("%s %s:  %s in %s on line %d \n", $time, $errors, $errstr, $errfile, $errline), 3, $log_path);
         }
         return true;

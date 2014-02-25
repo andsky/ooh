@@ -31,6 +31,12 @@ class Upload {
         return $this;
     }
 
+
+    /**
+     * Cache instance
+     * @param string $driver
+     * @return Cache instance
+     */
     static function instance()
     {
         if (self::$_instance == NULL) {

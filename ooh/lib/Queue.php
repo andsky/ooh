@@ -9,6 +9,13 @@
 class Queue
 {
     private static $_instance;
+
+
+    /**
+     * Queue instance
+     * @param string $driver
+     * @return Queue instance
+     */
     public static function instance($driver = NULL)
     {
         if (self::$_instance == NULL) {

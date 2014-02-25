@@ -23,6 +23,11 @@ class Request
     {
     }
 
+
+    /**
+     * Request instance
+     * @return Request instance
+     */
     public static function instance()
     {
         if (self::$_instance == NULL) {

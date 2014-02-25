@@ -11,6 +11,10 @@ class Encrypt
 {
     private static $_instance;
 
+    /**
+     * Encrypt instance
+     * @return Encrypt instance
+     */
     public static function instance()
     {
         if(self::$_instance == NULL){

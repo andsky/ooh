@@ -17,6 +17,11 @@ class Xmlparser {
     var $mapped   = NULL;
 
 
+
+    /**
+     * Xmlparser instance
+     * @return Xmlparser instance
+     */
     public static function instance()
     {
         if (self::$_instance == null) {

@@ -9,6 +9,10 @@
 class Cookie{
 	private static $_instance;
 
+	/**
+	 * Cookie instance
+	 * @return Cookie instance
+	 */
 	public static function instance()
 	{
 	    if(self::$_instance == NULL){

@@ -42,6 +42,12 @@ class Pager
 
     public $ajax = '';
 
+
+    /**
+     * Pager instance
+     * @param string $driver
+     * @return Pager instance
+     */
     public static function instance($driver = NULL)
     {
         if (self::$_instance == NULL) {

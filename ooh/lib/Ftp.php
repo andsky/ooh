@@ -25,6 +25,10 @@ class Ftp
     {
     }
 
+    /**
+     * Ftp instance
+     * @return Ftp instance
+     */
     public static function instance()
     {
         if (self::$_instance == NULL) {

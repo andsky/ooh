@@ -16,6 +16,10 @@ class Fso
     {
     }
 
+    /**
+     * Fso instance
+     * @return Fso instance
+     */
     public static function instance()
     {
         if (self::$_instance == NULL) {

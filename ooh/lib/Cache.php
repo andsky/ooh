@@ -12,6 +12,11 @@ class Cache
     protected $_exp = 3600;
 
 
+    /**
+     * Cache instance
+     * @param string $driver
+     * @return Cache instance
+     */
     public static function instance($driver = NULL)
     {
         if (self::$_instance == null) {
@@ -149,17 +154,22 @@ class memcache_cache extends Cache
 
     protected function _get($key)
     {
-        $content = $this->_mc->get($key);
-        if ( empty($content) ){
+        $data = $this->_mc->get($key);
+        if ( empty($data) ){
             return NULL;
         }
-        return $this->decode( $content );
+        if (ctype_digit($data)) {
+            return $data;
+        }
+        return $this->decode( $data );
     }
 
     protected function _set($key,$data)
     {
 
-        $data = $this->encode($data);
+        if (!ctype_digit($data)) {
+            $data = $this->encode($data);
+        }
         return $this->_mc->set($key, $data, false, $this->_exp);
     }
 
