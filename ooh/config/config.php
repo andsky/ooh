@@ -44,7 +44,7 @@ return array(
 
         ),
         'pager' => array(
-            'driver'   => 'sp_pager',
+            'driver'   => 'pager_pager',
         ),
         'session' => array(
             'driver'   => 'cache_session',
