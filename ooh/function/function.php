@@ -20,7 +20,7 @@ function __autoload($class)
         return $objects[$class];
     }
     $class_file = '';
-    foreach (array(LIB_PATH, APP_LIB_PATH) as $path) {
+    foreach (array(LIB_PATH, APP_LIB_PATH, SHARED_LIB_PATH) as $path) {
         $class_file = $path.$class.'.php';
         if (file_exists($class_file)) {
             break;
@@ -67,7 +67,7 @@ function import($class, $subdir = FALSE, $is_dir = FALSE)
     if (strstr($class,'.')){
         $class = str_replace( '.', '/', $class);
     }
-    $search_dir = array(LIB_PATH, PLU_PATH, MOD_PATH, APP_PATH.'lib/', APP_PATH.'module/');
+    $search_dir = array(LIB_PATH, PLU_PATH, APP_LIB_PATH, APP_PLU_PATH, SHARED_LIB_PATH, SHARED_PLU_PATH);
     //已经是路径
     foreach ($search_dir as $dir)
     {
@@ -79,8 +79,8 @@ function import($class, $subdir = FALSE, $is_dir = FALSE)
         }
     }
     //*载入
-    if (strstr(SYS_PATH.$class, '*')){
-        $array = Fso::fileList(SYS_PATH.str_replace('*', '', $class ), TRUE, '*.php');
+    if (strstr(OOH_PATH.$class, '*')){
+        $array = Fso::instance()->fileList(OOH_PATH.str_replace('*', '', $class ), TRUE, '*.php');
         foreach ($array as $path) {
             if (is_file($path)) {
                 import($path);

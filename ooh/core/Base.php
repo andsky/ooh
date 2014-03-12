@@ -35,14 +35,17 @@ class Base{
         {
             return self::$_models[$model];
         }
-        $model_class = BASE_PATH.APP_MODEL.DIRECTORY_SEPARATOR.'models'.DIRECTORY_SEPARATOR.$model.'.php';
-
-        if ( is_file( $model_class ) )
-        {
-            require($model_class);
-        }else{
+        $model_class = '';
+        foreach (array(APP_MODEL_PATH, SHARED_MODEL_PATH) as $path) {
+            $model_class = $path.$model.'.php';
+            if (file_exists($model_class)) {
+                break;
+            }
+        }
+        if (empty($model_class)) {
             throw new Http503Exceptions("can't load model {$model},Please check!!");
         }
+        require($model_class);
         self::$_models[$model] = new $model();
         return self::$_models[$model];
     }
@@ -58,7 +61,7 @@ class Base{
             return self::$_plugins[$plugin];
         }
         $class_file = '';
-        foreach (array(PLU_PATH, APP_PLU_PATH) as $path) {
+        foreach (array(PLU_PATH, APP_PLU_PATH, SHARED_PLU_PATH) as $path) {
             $class_file = $path.$plugin.'.php';
             if (file_exists($class_file)) {
                 break;

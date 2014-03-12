@@ -59,13 +59,13 @@ class Error {
 
         if (Config::instance()->error['display']) {
             if (!isset(Config::instance()->error['exception_tpl'])) {
-                Config::instance()->error['exception_tpl'] = SYS_PATH.'/config/exception.default.php.tpl';;
+                Config::instance()->error['exception_tpl'] = OOH_PATH.'/config/exception.default.php.tpl';;
             }
             include Config::instance()->error['exception_tpl'];
 
         }else {
             if (!isset(Config::instance()->error['error_tpl'])) {
-                Config::instance()->error['error_tpl'] = SYS_PATH.'/config/error.default.php.tpl';
+                Config::instance()->error['error_tpl'] = OOH_PATH.'/config/error.default.php.tpl';
             }
             include Config::instance()->error['error_tpl'];
         }
@@ -124,7 +124,9 @@ class Error {
             $time=date('Y-m-d H:i:s');
             $log_path = Config::instance()->error['path'];
             //Fso::instance()->mkdir($log_path);
-            mkdir($log_path, 755, TRUE);
+            if (!file_exists($log_path)) {
+                mkdir($log_path, 755, TRUE);
+            }
             $log_path .=  DIRECTORY_SEPARATOR. date("Y-m-d").'.log';
             error_log(sprintf("%s %s:  %s in %s on line %d \n", $time, $errors, $errstr, $errfile, $errline), 3, $log_path);
         }

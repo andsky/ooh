@@ -29,7 +29,7 @@ class Application {
      */
     public static function loadControl($control)
     {
-        $load_class = APP_PATH.'controllers/'.$control.'.php';
+        $load_class = APP_CONTORLLER_PATH.$control.'.php';
         $control .= 'Controller';
         if (isset(self::$_controls[$control]))
         {

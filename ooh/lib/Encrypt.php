@@ -46,7 +46,7 @@ class Encrypt
         $ivSize = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
         $iv = mcrypt_create_iv($ivSize, MCRYPT_RAND);
         $encryptText = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, Config::instance()->encrypt['secret'], $plainText, MCRYPT_MODE_ECB, $iv);
-        return base64_encode($encryptText);
+        return base64_encode(rtrim($encryptText, "\0"));
     }
 
 }

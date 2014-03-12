@@ -161,7 +161,7 @@ class Pager
     {
 
         if (empty($this->base_link)) {
-            $this->base_link = preg_replace('/(\?|&)page=([^&]+|)/is', '', $_SERVER['REQUEST_URI']);
+            $this->base_link = strip_tags(preg_replace('/(\?|&)page=([^&]+|)/is', '', $_SERVER['REQUEST_URI']));
         }
         if (stristr($this->base_link, $this->keyword)) {
             return $this->base_link.$page;
